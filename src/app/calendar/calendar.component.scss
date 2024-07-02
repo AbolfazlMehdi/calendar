@@ -35,6 +35,7 @@ $border: #d5d5dd;
       margin-bottom: 0;
       padding: 10px 0;
       text-align: center;
+      font-size: 0.8333333333333334vw;
     }
 
     &:first-child {
@@ -80,6 +81,7 @@ $border: #d5d5dd;
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: #e3e0e0;
 
 
         p {
@@ -93,6 +95,27 @@ $border: #d5d5dd;
         .delete_event {
           display: block;
         }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 1024px) {
+  .calendar {
+    .day {
+      .day-number {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .calendar {
+    .day {
+      .day-number {
+        font-size: 9px;
       }
     }
   }
