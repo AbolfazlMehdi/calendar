@@ -1,0 +1,33 @@
+<form [formGroup]="calendarForm">
+  <div class="example-container">
+    <p>Add Event</p>
+
+
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Choose a hour</mat-label>
+      <mat-select formControlName="hour">
+        <ng-container *ngFor="let hour of hours">
+          <mat-option [value]="hour">{{hour}}</mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+
+    <div>
+      <button mat-button color="primary" (click)="onSubmit()">Save</button>
+      <button mat-button color="accent" (click)="this.dialogRef.close()">Cancel</button>
+    </div>
+  </div>
+
+</form>

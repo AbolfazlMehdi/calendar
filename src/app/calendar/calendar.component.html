@@ -1,0 +1,37 @@
+<div class="operation">
+  <button (click)="addEvent()" mat-button color="primary" class="btn">Add event</button>
+  <button (click)="getWeekDays('last' , firstDay)" mat-button color="primary" class="btn">Previous week</button>
+  <button (click)="getWeekDays('next' ,lastDay)" mat-button color="primary" class="btn">Next week</button>
+  <div class="month">
+    <ng-container *ngFor="let month of months; let index = index">
+      <p>{{month}}</p>
+      <ng-container *ngIf="months.length > 1 && index === 0">-</ng-container>
+    </ng-container>
+  </div>
+  <div class="year">
+    <ng-container *ngFor="let year of years; let index = index">
+      <p>{{year}}</p>
+      <ng-container *ngIf="years.length > 1 && index === 0">-</ng-container>
+    </ng-container>
+  </div>
+</div>
+<div class="calendar">
+  <div class="day" *ngFor="let day of days; let index = index">
+    <p id="day-{{day.date}}" class="day-number">{{day.day}} {{day.date}}</p>
+    <div class="hour" *ngFor="let hour of hours"
+         id="{{day.day}}-{{hour}}-{{day.month}}-{{day.date}}-{{day.year}}">
+      <p class="hour_number" *ngIf="index === 0">{{hour}}</p>
+      <ng-container
+        *ngFor="let event of getEventsForHour(day, hour)">
+        <div class="event" cdkDropList (cdkDropListDropped)="drop($event , day , hour , event.title)">
+          <p class="drag_text" id="{{day}}-{{hour}}" cdkDrag (click)="onEdit(day ,event.title , hour )">
+            {{ event.title }}
+          </p>
+        </div>
+        <mat-icon class="delete_event" (click)="onDelete(day , hour)">
+          delete
+        </mat-icon>
+      </ng-container>
+    </div>
+  </div>
+</div>
